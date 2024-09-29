@@ -1,0 +1,30 @@
+{
+  "name": "week-3",
+  "version": "1.0.0",
+  "description": "API AUTOMATION",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naseraine/SanberAPI-Automation.git"
+  },
+  "keywords": [
+    "API",
+    "AUTOMATION"
+  ],
+  "author": "Rasyid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naseraine/SanberAPI-Automation/issues"
+  },
+  "homepage": "https://github.com/Naseraine/SanberAPI-Automation#readme",
+  "dependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3",
+    "mochawesome": "^7.1.3",
+    "supertest": "^7.0.0"
+  }
+}

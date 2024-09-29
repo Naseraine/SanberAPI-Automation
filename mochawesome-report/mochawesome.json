@@ -1,0 +1,412 @@
+{
+  "stats": {
+    "suites": 9,
+    "tests": 9,
+    "passes": 9,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-09-29T14:02:26.671Z",
+    "end": "2024-09-29T14:02:29.872Z",
+    "duration": 3201,
+    "testsRegistered": 9,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9446a6f0-0556-4666-9016-a3ff5c8aebdb",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6ade3704-b115-4d95-aef4-db3aca1d75d1",
+          "title": "Login",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Login to get token",
+              "fullTitle": "Login Positive - Login to get token",
+              "timedOut": false,
+              "duration": 1223,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(baseUrl) //base url\n    .post(\"/authentications\") //endpoint\n    .send(  {\n            \"email\": \"toko_naser@gmail.com\",\n            \"password\": \"toko_naser123\"  \n            }\n    );\n//Assertion pake chai\nexpect((await response).status).to.equal(201);\naccessToken =(await response).body.data.accessToken\nrefreshToken =(await response).body.data.refreshToken\nconsole.log(await response.body);\nconsole.log(\"accessToken : \",accessToken);\nconsole.log(\"refreshToken : \",refreshToken);",
+              "err": {},
+              "uuid": "d42f799b-e16f-4f51-9a03-6873f2dd000b",
+              "parentUUID": "6ade3704-b115-4d95-aef4-db3aca1d75d1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d42f799b-e16f-4f51-9a03-6873f2dd000b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1223,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "95d19fb3-cf21-4b55-8956-76852a86dd87",
+          "title": "Get User List",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Melihat daftar akun admin aktif",
+              "fullTitle": "Get User List Positive - Melihat daftar akun admin aktif",
+              "timedOut": false,
+              "duration": 133,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(baseUrl) //base url\n.get(\"/users\") //endpoint\n//Assertion pake chai\n.set(\"Authorization\",`Bearer ${accessToken}`);\nconsole.log(await response.body);\nexpect(await response.status).to.equal(200);\nexpect(await response.body.status).to.equal(\"success\");",
+              "err": {},
+              "uuid": "b55b4330-cd88-421a-86dc-d214080fd0a7",
+              "parentUUID": "95d19fb3-cf21-4b55-8956-76852a86dd87",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b55b4330-cd88-421a-86dc-d214080fd0a7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 133,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "8917c588-3bf0-461b-8d06-dcbbbdccc3ed",
+          "title": "Create User",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Membuat User admin baru",
+              "fullTitle": "Create User Positive - Membuat User admin baru",
+              "timedOut": false,
+              "duration": 930,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "function generateRandomEmail() {\n    const characters = 'abcdefghijklmnopqrstuvwxyz1234567890';\n    let email = '';\n    for (let i = 0; i < 10; i++) {\n        email += characters.charAt(Math.floor(Math.random() * characters.length));\n    }\n    return `${email}@gmail.com`;\n}\nconst randomEmail = generateRandomEmail();\nconst response = await request(baseUrl) //base url\n    .post(\"/users\") //endpoint\n    .send(  \n            {\n                \"name\": \"admin_naser101\",\n                \"email\": randomEmail,\n                \"password\": \"admin_naser101\"\n            }\n         \n    )\n//Assertion pake chai\n.set(\"Authorization\",`Bearer ${accessToken}`);\nconsole.log(await response.body);\nexpect(await response.status).to.equal(201);\nexpect(await response.body.status).to.equal(\"success\");\nexpect(await response.body.message).to.equal(\"User berhasil ditambahkan\");",
+              "err": {},
+              "uuid": "fee44940-6e5c-4110-84b8-b8919a1930a9",
+              "parentUUID": "8917c588-3bf0-461b-8d06-dcbbbdccc3ed",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fee44940-6e5c-4110-84b8-b8919a1930a9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 930,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "f23fa460-7cba-426d-8661-44514a768fb2",
+          "title": "Get Customer List",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Melihat data pelanggan yang terdaftar",
+              "fullTitle": "Get Customer List Positive - Melihat data pelanggan yang terdaftar",
+              "timedOut": false,
+              "duration": 168,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(baseUrl) //base url\n.get(\"/customers\") //endpoint\n//Assertion pake chai\n.set(\"Authorization\",`Bearer ${accessToken}`);\nconsole.log(await response.body);\nexpect(await response.status).to.equal(200);\nexpect(await response.body.status).to.equal(\"success\");",
+              "err": {},
+              "uuid": "e163a8e7-f257-4963-8c9b-51492ff8c954",
+              "parentUUID": "f23fa460-7cba-426d-8661-44514a768fb2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e163a8e7-f257-4963-8c9b-51492ff8c954"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 168,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "051d2c37-835c-4dad-b40f-c8621ff62fe4",
+          "title": "Create Customer",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Membuat pelanggan baru",
+              "fullTitle": "Create Customer Positive - Membuat pelanggan baru",
+              "timedOut": false,
+              "duration": 125,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "function generateRandomusername() {\n    const characters = 'abcdefghijklmnopqrstuvwxyz';\n    let username = '';\n    for (let i = 0; i < 10; i++) {\n        username += characters.charAt(Math.floor(Math.random() * characters.length));\n    }\n    return `${username}`;\n}\nfunction generateRandomphone() {\n    const numcharacters = '1234567890';\n    let userphone = '';\n    for (let i = 0; i < 10; i++) {\n        userphone += numcharacters.charAt(Math.floor(Math.random() * numcharacters.length));\n    }\n    return `0${userphone}`;\n}\nconst randomuserphone = generateRandomphone();\nconst randomusername = generateRandomusername();\nconst response = await request(baseUrl) //base url\n    .post(\"/customers\") //endpoint\n    .send(  \n            {\n                \"name\": randomusername,\n                \"phone\": randomuserphone,\n                \"address\": \"Bintaro\",\n                \"description\": \"Customer Umum\"\n         \n            }\n         \n    )\n//Assertion pake chai\n.set(\"Authorization\",`Bearer ${accessToken}`);\nconsole.log(await response.body);\nexpect(await response.status).to.equal(201);\nexpect(await response.body.status).to.equal(\"success\");\nexpect(await response.body.message).to.equal(\"Customer berhasil ditambahkan\");",
+              "err": {},
+              "uuid": "a5df271e-408d-451c-929b-50c2bacf8d28",
+              "parentUUID": "051d2c37-835c-4dad-b40f-c8621ff62fe4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a5df271e-408d-451c-929b-50c2bacf8d28"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 125,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "0791d446-a1d6-4444-b25f-cd7289f3034c",
+          "title": "Get Category List",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Melihat daftar kategori",
+              "fullTitle": "Get Category List Positive - Melihat daftar kategori",
+              "timedOut": false,
+              "duration": 170,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(baseUrl) //base url\n.get(\"/categories\") //endpoint\n//Assertion pake chai\n.set(\"Authorization\",`Bearer ${accessToken}`);\nconsole.log(await response.body);\nexpect(await response.status).to.equal(200);\nexpect(await response.body.status).to.equal(\"success\");",
+              "err": {},
+              "uuid": "cefcaf2d-400e-4657-adc7-ec09ab54d169",
+              "parentUUID": "0791d446-a1d6-4444-b25f-cd7289f3034c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cefcaf2d-400e-4657-adc7-ec09ab54d169"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 170,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "7dd872f0-3615-4b16-9508-0dd8efc0f07f",
+          "title": "Add New Category",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Menambahkan kategori baru",
+              "fullTitle": "Add New Category Positive - Menambahkan kategori baru",
+              "timedOut": false,
+              "duration": 102,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(baseUrl) //base url\n.post(\"/categories\") //endpoint\n.send(  \n    {\n        \"name\": \"Minuman Sachet\",\n        \"description\": \"Minuman Instant berbentuk bubuk\"\n \n    }\n \n)\n//Assertion pake chai\n.set(\"Authorization\",`Bearer ${accessToken}`);\nconsole.log(await response.body);\nexpect(await response.status).to.equal(201);\nexpect(await response.body.status).to.equal(\"success\");\nexpect(await response.body.message).to.equal(\"Category berhasil ditambahkan\");",
+              "err": {},
+              "uuid": "88a0fa2b-e8d6-4f95-9c14-07ff13b77cb3",
+              "parentUUID": "7dd872f0-3615-4b16-9508-0dd8efc0f07f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "88a0fa2b-e8d6-4f95-9c14-07ff13b77cb3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 102,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "850be175-5886-476b-bd8a-eeb151c1ce68",
+          "title": "Get Product List",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Melihat daftar product",
+              "fullTitle": "Get Product List Positive - Melihat daftar product",
+              "timedOut": false,
+              "duration": 168,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(baseUrl) //base url\n.get(\"/products\") //endpoint\n//Assertion pake chai\n.set(\"Authorization\",`Bearer ${accessToken}`);\nconsole.log(await response.body);\nexpect(await response.status).to.equal(200);\nexpect(await response.body.status).to.equal(\"success\");",
+              "err": {},
+              "uuid": "16e90c4d-8a1f-4482-9ab9-686dcedb950c",
+              "parentUUID": "850be175-5886-476b-bd8a-eeb151c1ce68",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "16e90c4d-8a1f-4482-9ab9-686dcedb950c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 168,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "2e9b160d-8919-4e34-bd16-14fb3ebf7279",
+          "title": "Add New Product",
+          "fullFile": "C:\\Users\\rasyi\\Desktop\\Tugas\\Week 3\\Tugas_week3.js",
+          "file": "\\Tugas_week3.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Positive - Menambahkan produk baru",
+              "fullTitle": "Add New Product Positive - Menambahkan produk baru",
+              "timedOut": false,
+              "duration": 133,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await request(baseUrl) //base url\n.post(\"/products\") //endpoint\n.send(  \n    {\n        \"category_id\" : \"46d9cb65-fb3e-4a3f-a965-7fbf1da6dcd1\",\n        \"code\": \"X098X01\",\n        \"name\": \"Makanan Mahal001\",\n        \"price\": \"12000\",\n        \"cost\": \"10000\",\n        \"stock\": \"1\"\n     }\n \n)\n//Assertion pake chai\n.set(\"Authorization\",`Bearer ${accessToken}`);\nconsole.log(await response.body);\nexpect(await response.status).to.equal(201);\nexpect(await response.body.status).to.equal(\"success\");\nexpect(await response.body.message).to.equal(\"Product berhasil ditambahkan\");",
+              "err": {},
+              "uuid": "2a345980-0d47-4d8c-98bb-17e099f55ff7",
+              "parentUUID": "2e9b160d-8919-4e34-bd16-14fb3ebf7279",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2a345980-0d47-4d8c-98bb-17e099f55ff7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 133,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.7.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
